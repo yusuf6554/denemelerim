@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style type="text/css">
+    body {
+      font: 14px Arial;
+    }
+    
+    .hata {
+      color: darkred;
+      border: 1px solid darkred;
+      padding: 10px;
+      margin-top: 10px;
+    }
+  </style>
+  <script type="text/javascript" src="angular.js"></script>
+  <script type="text/javascript">
+    // https://api.github.com/users/yusuf6554/repos
+    var github = angular.module('github', []);
+    githubRepos = github.controller('githubRepos', ['$scope', '$http', function($scope, $http){
+      // $scope.soz = 'Ey yükselen yeni nesil, istikbal sizindir. Cumhuriyet\'i biz kurduk, O\'nu yükseltecek ve sürdürecek sizlersiniz.';
+      $scope.getGithubRepos = function(){
+        var fncTamam = function(response){
+          $scope.repos = response.data;
+          $scope.hata = null;
+        }
+        var fncHata = function(response){
+          $scope.repos = null;
+          $scope.hata = 'Kullanıcı yok.';
+        }
+        $http.get('https://api.github.com/users/' + $scope.kullaniciadi + '/repos').then(fncTamam, fncHata);
+      }
+    }]);
+  </script>
+</head>
+<body>
+  <div ng-app="github">
+    <div ng-controller="githubRepos">
+      <form ng-submit="getGithubRepos()">
+        Kullanıcı Adı: <input type="text" ng-model="kullaniciadi" />
+      </form>
+      <div class="hata" ng-show="hata">{{ hata }}</div>
+      <div ng-show="repos">
+        <ol>
+          <li ng-repeat="repo in repos">
+            <span>{{ repo.name }}</span>
+            <div ng-show="repo.description" style="padding: 5px; border: 1px solid #ddd; width: 300px; margin: 2px 0">{{ repo.description }}</div>
+            <div ng-show="!repo.description" style="color: #999; padding: 5px; border: 1px solid #ddd; width: 300px; margin: 2px 0">Açıklama Yok</div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
