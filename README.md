@@ -1,2 +1,3 @@
-denemelerim
+Denemelerim
 ===========
+Benim yaptığım tüm denemeler.
