@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="tr-TR">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+    a {text-decoration: none}
+    body {margin: 0; font: 14px Arial, sans-serif}
+    #soru-sor {margin: 100px auto; border: 1px solid #ddd; width: 978px; padding: 15px 20px}
+    h1.first {margin-top: 0}
+    h1.last {margin-bottom: 0}
+    #soru-baslik {margin: 0; border: 1px solid #ddd; background-color: #fff; padding: 2px 3px; outline: 0; width: 970px; font: 14px Arial}
+    #soruicerik-wrapper {border: 1px solid #ddd; width: 976px; margin-top: 10px}
+    #soruicerik-buttons {list-style-type: none; margin: 0; padding: 5px 8px; margin-bottom: 0; border-bottom: 1px solid #ddd; overflow: auto}
+    #soruicerik-buttons li {float: left}
+    #soruicerik-buttons li a {display: block; padding: 7px 5px 3px 5px; color: black; font: 14px Arial}
+    #fontboyut {margin: 4px 5px; margin-left: 3px; font: 14px Arial}
+    #soru-icerik {height: 200px; padding: 10px; width: 956px; overflow: auto; font-size: 13px}
+  </style>
+  <script type="text/javascript">
+    function executecmd(name, args){
+      document.execCommand(name, false, args);
+      document.getElementById("soru-icerik").focus();
+    }
+    function fontboyutu(index){
+      if (index > 0){
+        executecmd('fontSize', index);
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="soru-sor">
+    <h1 class="first">Soru Sor</h1>
+    <input type="text" placeholder="Soru Başlığı" id="soru-baslik" />
+    <div id="soruicerik-wrapper">
+      <ul id="soruicerik-buttons">
+        <li><a href="javascript:void(0)" onclick="executecmd('bold', undefined)" title="Kalın"><img src="editor/kalin.png" alt="" /></a></li>
+        <li><a href="javascript:void(0)" onclick="executecmd('italic', undefined)" title="Eğik"><img src="editor/egik.png" alt="" /></a></li>
+        <li><a href="javascript:void(0)" onclick="executecmd('underline', undefined)" title="Altı Çizili"><img src="editor/alticizili.png" alt="" /></a></li>
+        <li>
+          <select id="fontboyut" onchange="fontboyutu(this.selectedIndex);this.selectedIndex = 0;">
+            <option>Yazı Boyutu</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
+        </li>
+        <li><a href="javascript:void(0)" onclick="executecmd('insertHorizontalRule', undefined)" title="Çizgi"><img src="editor/cizgi.png" alt="" /></a></li>
+        <li><a href="javascript:void(0)" onclick="executecmd('insertOrderedList', undefined)" title="Sayılı Liste"><img src="editor/sayili.png" alt="" /></a></li>
+        <li><a href="javascript:void(0)" onclick="executecmd('insertUnorderedList', undefined)" title="Liste"><img src="editor/liste.png" alt="" /></a></li>
+        <li><a href="javascript:void(0)" onclick="executecmd('createLink', prompt('Link adresi girin', 'http://'))" title="Link"><img src="editor/link.png" alt="" /></a></li>
+        <li><a href="javascript:void(0)" onclick="executecmd('unlink', undefined)" title="Link Sil"><img src="editor/linksil.png" alt="" /></a></li>
+        <li><a href="javascript:void(0)" onclick="executecmd('insertImage', prompt('Resim adresi girin', 'http://'))" title="Resim"><img src="editor/resim.png" alt="" /></a></li>
+        <li><a href="javascript:void(0)" onclick="executecmd('justifyLeft', undefined)" title="Sola Yasla"><img src="editor/sol.png" alt="" /></a></li>
+        <li><a href="javascript:void(0)" onclick="executecmd('justifyCenter', undefined)" title="Ortala"><img src="editor/orta.png" alt="" /></a></li>
+        <li><a href="javascript:void(0)" onclick="executecmd('justifyRight', undefined)" title="Sağa Yasla"><img src="editor/sag.png" alt="" /></a></li>
+      </ul>
+      <div id="soru-icerik" contenteditable="true"></div>
+    </div>
+  </div>
+</body>
+</html>
